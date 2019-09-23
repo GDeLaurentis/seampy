@@ -8,5 +8,7 @@ setup(
     author_email='g.dl@hotmail.it',
     description='Scattering Equations Amplitudes',
     packages=find_packages(),
-    install_requires=['numpy'],
+    install_requires=['numpy<1.17',
+                      'mpmath<=1.1.0',
+                      'sympy<=1.4', ],
 )
