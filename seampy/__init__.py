@@ -1,2 +1,3 @@
-from chy import CHYUnknown                                                                              # noqa
-from scattering_equations_solver import mandelstams, punctures, hms, M, V, solve_scattering_equations   # noqa
+"""Some documentation seampy.__init__"""
+from amplitudes import NumericalAmplitude                                         # noqa
+from solver import mandelstams, punctures, hms, M, V, solve_scattering_equations  # noqa

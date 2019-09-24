@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to seampy’s documentation! &#8212; seampy 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">seampy 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-seampy-s-documentation">
+<h1>Welcome to seampy’s documentation!<a class="headerlink" href="#welcome-to-seampy-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>seampy (Scattering Equations AMplitudes with PYthon)</p>
+</div>
+<div class="section" id="installing-seampy">
+<h1>Installing seampy<a class="headerlink" href="#installing-seampy" title="Permalink to this headline">¶</a></h1>
+<p>Installation is easy with pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">seampy</span>
+</pre></div>
+</div>
+<p>it also requires the phase space package lips:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">lips</span><span class="o">-</span><span class="n">lite</span>
+</pre></div>
+</div>
+<p>alternatively the package can be cloned from github.</p>
+</div>
+<div class="section" id="seampy-quickstart">
+<h1>seampy QuickStart<a class="headerlink" href="#seampy-quickstart" title="Permalink to this headline">¶</a></h1>
+<p>To get started computing amplitudes open an interactive python session and follow this simple example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython
+
+In [1]: import seampy, lips
+
+In [2]: oParticles = lips.Particles(6)
+
+In [3]: oParticles.fix_mom_cons()
+
+In [4]: oNumAmp = seampy.NumericalAmplitude(theory=&quot;DF2&quot;, helconf=&quot;pppmmm&quot;)
+
+In [5]: oNumAmp(oParticles)
+</pre></div>
+</div>
+<p>the output will be a complex number</p>
+<p>Then you should get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Finished</span><span class="p">:</span> <span class="n">An</span> <span class="n">initial</span> <span class="n">directory</span> <span class="n">structure</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span><span class="o">.</span>
+
+<span class="n">You</span> <span class="n">should</span> <span class="n">now</span> <span class="n">populate</span> <span class="n">your</span> <span class="n">master</span> <span class="n">file</span> <span class="o">.</span>\<span class="n">source</span>\<span class="n">index</span><span class="o">.</span><span class="n">rst</span> <span class="ow">and</span> <span class="n">create</span> <span class="n">other</span> <span class="n">documentation</span>
+<span class="n">source</span> <span class="n">files</span><span class="o">.</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">build</span> <span class="n">command</span> <span class="n">to</span> <span class="n">build</span> <span class="n">the</span> <span class="n">docs</span><span class="p">,</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span>
+   <span class="n">sphinx</span><span class="o">-</span><span class="n">build</span> <span class="o">-</span><span class="n">b</span> <span class="n">builder</span> <span class="o">.</span>\<span class="n">source</span> <span class="o">.</span>\<span class="n">build</span>
+<span class="n">where</span> <span class="s2">&quot;builder&quot;</span> <span class="ow">is</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">supported</span> <span class="n">builders</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">html</span><span class="p">,</span> <span class="n">latex</span> <span class="ow">or</span> <span class="n">linkcheck</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to seampy’s documentation!</a></li>
+<li><a class="reference internal" href="#installing-seampy">Installing seampy</a></li>
+<li><a class="reference internal" href="#seampy-quickstart">seampy QuickStart</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">seampy 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Giuseppe De Laurentis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

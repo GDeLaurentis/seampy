@@ -29,7 +29,7 @@ class NumericalAmplitude(object):
 
     def __init__(self, theory, helconf):
         self.theory = theory
-        self.helconf = helconf
+        self.helconf = helconf.replace("+", "p").replace("-", "m")
         self.__name__ = self.theory + "/" + self.helconf.replace("+", "p").replace("-", "m")
         self.process_name = self.theory + "_" + self.helconf.replace("+", "p").replace("-", "m")
 
@@ -124,10 +124,10 @@ class NumericalAmplitude(object):
         return os.path.dirname(__file__) + "/.cache/call_caches"
 
     def get_call_cache(self):
-        if "dCallCache_" + self.process_name not in dir(CHYUnknown):
+        if "dCallCache_" + self.process_name not in dir(NumericalAmplitude):
             self.reload_call_cache()
         else:
-            self.dCallCache = getattr(CHYUnknown, "dCallCache_" + self.process_name)
+            self.dCallCache = getattr(NumericalAmplitude, "dCallCache_" + self.process_name)
         self.len_keys_call_cache_at_last_save = len(self.dCallCache.keys())
 
     def reload_call_cache(self):
@@ -135,7 +135,7 @@ class NumericalAmplitude(object):
             os.makedirs(self.call_cache_path)
         with MyShelf(self.call_cache_path + "/" + self.process_name, 'c') as persistentCallCache:
             dCallCache = multiprocessing.Manager().dict(dict(persistentCallCache))
-        setattr(CHYUnknown, "dCallCache_" + self.process_name, dCallCache)
+        setattr(NumericalAmplitude, "dCallCache_" + self.process_name, dCallCache)
         self.dCallCache = dCallCache
 
     def save_call_cache(self):
