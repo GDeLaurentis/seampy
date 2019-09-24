@@ -46,97 +46,57 @@
 <dl class="class">
 <dt id="seampy.amplitudes.NumericalAmplitude">
 <em class="property">class </em><code class="descclassname">seampy.amplitudes.</code><code class="descname">NumericalAmplitude</code><span class="sig-paren">(</span><em>theory</em>, <em>helconf</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="attribute">
-<dt id="seampy.amplitudes.NumericalAmplitude.call_cache_path">
-<code class="descname">call_cache_path</code><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.call_cache_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><div class="line-block">
+<div class="line">NumericalAmplitude provides a callable object to compute scattering amplitudes.</div>
+<div class="line">To call provide a phase space point from the lips package.</div>
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seampy</span><span class="o">,</span> <span class="nn">lips</span>
+<span class="n">oParticles</span> <span class="o">=</span> <span class="n">lips</span><span class="o">.</span><span class="n">Particles</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">oParticles</span><span class="o">.</span><span class="n">fix_mom_cons</span><span class="p">()</span>
+<span class="n">oAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;YM&quot;</span><span class="p">,</span> <span class="n">helconf</span><span class="o">=</span><span class="s2">&quot;pmpmpm&quot;</span><span class="p">)</span>
+<span class="n">oAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
+</pre></div>
+</td></tr></table></div>
 <dl class="method">
 <dt id="seampy.amplitudes.NumericalAmplitude.detJ">
 <code class="descname">detJ</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.detJ" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.get_call_cache">
-<code class="descname">get_call_cache</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.get_call_cache" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Numerical determinant of reduced Jacobian matrix Phi.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="seampy.amplitudes.NumericalAmplitude.nCyc">
 <code class="descname">nCyc</code><span class="sig-paren">(</span><em>sol</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nCyc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Numerical cyclic Parke-Taylor-like factor.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="seampy.amplitudes.NumericalAmplitude.nPfA">
 <code class="descname">nPfA</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nPfA" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Numerical pfaffian of reduced A.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="seampy.amplitudes.NumericalAmplitude.nPfPsi">
 <code class="descname">nPfPsi</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nPfPsi" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Numerical pfaffian of reduced Psi.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="seampy.amplitudes.NumericalAmplitude.nW1">
 <code class="descname">nW1</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nW1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Numerical W1 (integrand for DF2 and CG).</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.reload_call_cache">
-<code class="descname">reload_call_cache</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.reload_call_cache" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.save_call_cache">
-<code class="descname">save_call_cache</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.save_call_cache" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.solve_SE">
-<code class="descname">solve_SE</code><span class="sig-paren">(</span><em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.solve_SE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dt id="seampy.amplitudes.NumericalAmplitude.solve_se">
+<code class="descname">solve_se</code><span class="sig-paren">(</span><em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.solve_se" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface to seampy.solver.solve_scattering_equations. Takes a phase space point as input.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.amplitudes.ee_sub">
-<code class="descclassname">seampy.amplitudes.</code><code class="descname">ee_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.ee_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="seampy.amplitudes.ek_sub">
-<code class="descclassname">seampy.amplitudes.</code><code class="descname">ek_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.ek_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="seampy.amplitudes.ke_sub">
-<code class="descclassname">seampy.amplitudes.</code><code class="descname">ke_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.ke_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="seampy.amplitudes.kk_sub">
-<code class="descclassname">seampy.amplitudes.</code><code class="descname">kk_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.kk_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="seampy.amplitudes.zz_sub">
-<code class="descclassname">seampy.amplitudes.</code><code class="descname">zz_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.zz_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
 </dd></dl>
 
 </div>
@@ -145,31 +105,32 @@ occurrences of pattern in string by the replacement repl.</p>
 <dl class="function">
 <dt id="seampy.integrands.A">
 <code class="descclassname">seampy.integrands.</code><code class="descname">A</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.A" title="Permalink to this definition">¶</a></dt>
-<dd><p>A matrix (reduced)</p>
+<dd><p>A anti-symmetric matrix (reduced).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="seampy.integrands.Cyc">
 <code class="descclassname">seampy.integrands.</code><code class="descname">Cyc</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Cyc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parke-Taylor-like cyclic factor</p>
+<dd><p>Parke-Taylor-like cyclic factor (reduced).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="seampy.integrands.Phi">
 <code class="descclassname">seampy.integrands.</code><code class="descname">Phi</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Phi" title="Permalink to this definition">¶</a></dt>
-<dd><p>SE Jacobian matrix</p>
+<dd><p>SE Jacobian matrix (reduced).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="seampy.integrands.Psi">
 <code class="descclassname">seampy.integrands.</code><code class="descname">Psi</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Psi" title="Permalink to this definition">¶</a></dt>
-<dd><p>Psi anti-symmetric matrix (argument of Pfaffian)</p>
+<dd><p>Psi anti-symmetric matrix (reduced).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="seampy.integrands.W1">
 <code class="descclassname">seampy.integrands.</code><code class="descname">W1</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.W1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>DF2 and CG integrand (reduced).</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-seampy.solver">
@@ -177,7 +138,7 @@ occurrences of pattern in string by the replacement repl.</p>
 <dl class="function">
 <dt id="seampy.solver.M">
 <code class="descclassname">seampy.solver.</code><code class="descname">M</code><span class="sig-paren">(</span><em>i</em>, <em>n=None</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.M" title="Permalink to this definition">¶</a></dt>
-<dd><p>Elimination theory matrix: i^th matrix in the recursion with n external legs.</p>
+<dd><p>Elimination theory matrix: i^th matrix in the recursion with n external legs. Default is i = n.</p>
 </dd></dl>
 
 <dl class="function">
@@ -213,47 +174,13 @@ occurrences of pattern in string by the replacement repl.</p>
 <dl class="function">
 <dt id="seampy.solver.solve_scattering_equations">
 <code class="descclassname">seampy.solver.</code><code class="descname">solve_scattering_equations</code><span class="sig-paren">(</span><em>n</em>, <em>dict_ss</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.solve_scattering_equations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="seampy.solver.ss_sub">
-<code class="descclassname">seampy.solver.</code><code class="descname">ss_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.ss_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
+<dd><p>Solves the scattering equations given multiplicity and mandelstams.</p>
 </dd></dl>
-
-<dl class="function">
-<dt id="seampy.solver.zs_sub">
-<code class="descclassname">seampy.solver.</code><code class="descname">zs_sub</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.zs_sub" title="Permalink to this definition">¶</a></dt>
-<dd><p>sub(repl, string[, count = 0]) –&gt; newstring
-Return the string obtained by replacing the leftmost non-overlapping
-occurrences of pattern in string by the replacement repl.</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-seampy.tools">
-<span id="seampy-tools-module"></span><h2>seampy.tools module<a class="headerlink" href="#module-seampy.tools" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="seampy.tools.MyShelf">
-<em class="property">class </em><code class="descclassname">seampy.tools.</code><code class="descname">MyShelf</code><span class="sig-paren">(</span><em>filename</em>, <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.tools.MyShelf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="seampy.tools.flatten">
-<code class="descclassname">seampy.tools.</code><code class="descname">flatten</code><span class="sig-paren">(</span><em>temp_list</em>, <em>recursion_level=0</em>, <em>treat_list_subclasses_as_list=True</em>, <em>treat_tuples_as_lists=False</em>, <em>max_recursion=None</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.tools.flatten" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="seampy.tools.pfaffian">
-<code class="descclassname">seampy.tools.</code><code class="descname">pfaffian</code><span class="sig-paren">(</span><em>matrix</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.tools.pfaffian" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </div>
 <div class="section" id="module-seampy">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-seampy" title="Permalink to this headline">¶</a></h2>
-<p>Some documentation seampy.__init__</p>
+<p>Content as above.</p>
 </div>
 </div>
 
@@ -270,7 +197,6 @@ occurrences of pattern in string by the replacement repl.</p>
 <li><a class="reference internal" href="#module-seampy.amplitudes">seampy.amplitudes module</a></li>
 <li><a class="reference internal" href="#module-seampy.integrands">seampy.integrands module</a></li>
 <li><a class="reference internal" href="#module-seampy.solver">seampy.solver module</a></li>
-<li><a class="reference internal" href="#module-seampy.tools">seampy.tools module</a></li>
 <li><a class="reference internal" href="#module-seampy">Module contents</a></li>
 </ul>
 </li>

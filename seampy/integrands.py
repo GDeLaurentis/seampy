@@ -16,7 +16,7 @@ import operator
 
 
 def A(n):
-    """A matrix (reduced)"""
+    """A anti-symmetric matrix (reduced)."""
     ks = sympy.symbols('k1:{}'.format(n + 1))
     zs = sympy.symbols('z1:{}'.format(n + 1))
 
@@ -39,7 +39,7 @@ def A(n):
 
 
 def Psi(n):
-    """Psi anti-symmetric matrix (argument of Pfaffian)"""
+    """Psi anti-symmetric matrix (reduced)."""
     ks = sympy.symbols('k1:{}'.format(n + 1))
     es = sympy.symbols('e1:{}'.format(n + 1))
     zs = sympy.symbols('z1:{}'.format(n + 1))
@@ -100,7 +100,7 @@ def Psi(n):
 
 
 def Cyc(n):
-    """Parke-Taylor-like cyclic factor"""
+    """Parke-Taylor-like cyclic factor (reduced)."""
     zs = sympy.symbols('z1:{}'.format(n + 1))
 
     Cyc = -1 / reduce(operator.mul, [(zs[i] - zs[i + 1]) for i in range(1, n - 1)])
@@ -119,7 +119,7 @@ def Cyc(n):
 
 
 def Phi(n):
-    """SE Jacobian matrix"""
+    """SE Jacobian matrix (reduced)."""
     ks = sympy.symbols('k1:{}'.format(n + 1))
     zs = sympy.symbols('z1:{}'.format(n + 1))
 
@@ -151,6 +151,7 @@ def Phi(n):
 
 
 def W1(n):
+    """DF2 and CG integrand (reduced)."""
     ks = sympy.symbols('k1:{}'.format(n + 1), commutative=False)
     es = sympy.symbols('e1:{}'.format(n + 1), commutative=False)
     zs = sympy.symbols('z1:{}'.format(n + 1), commutative=True)

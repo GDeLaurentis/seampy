@@ -53,7 +53,7 @@ def hms(n):
 
 
 def M(i, n=None):
-    """Elimination theory matrix: i^th matrix in the recursion with n external legs."""
+    """Elimination theory matrix: i^th matrix in the recursion with n external legs. Default is i = n."""
     if n is None:
         n = i
     zs = punctures(n)
@@ -95,7 +95,7 @@ def V(n):
 def numerical_coeffs(Mn, n, dict_ss):
     """Numerical coefficients of polynomial of order (n - 3)! obtianed from determinant of elimination theory matrix."""
     Mn = Mn.tolist()
-    Mn = [[zs_sub(ss_sub(str(entry))) for entry in line] for line in Mn]
+    Mn = [[_zs_sub(_ss_sub(str(entry))) for entry in line] for line in Mn]
     zs = punctures(n)
 
     values = [mpmath.e ** (2 * mpmath.pi * 1j * j / (math.factorial(n - 3) + 1)) for j in range(math.factorial(n - 3) + 1)]
@@ -115,6 +115,8 @@ def numerical_coeffs(Mn, n, dict_ss):
 
 
 def solve_scattering_equations(n, dict_ss):
+    """Solves the scattering equations given multiplicity and mandelstams."""
+
     if n == 3:
         return [{}]
 
@@ -136,8 +138,8 @@ def solve_scattering_equations(n, dict_ss):
         # subs
         sol = sols[0]
         Mnew = Mnew.tolist()
-        Mnew = [[zs_sub(ss_sub(str(entry))).replace("dict_zs['z{}']".format(n - 1),
-                                                    "dict_zs['z{}'] * mpmath.mpc(sol[str(zs[-2])] / zs[-3])".format(n - 2))
+        Mnew = [[_zs_sub(_ss_sub(str(entry))).replace("dict_zs['z{}']".format(n - 1),
+                                                      "dict_zs['z{}'] * mpmath.mpc(sol[str(zs[-2])] / zs[-3])".format(n - 2))
                  for entry in line] for line in Mnew]
 
         # get scaling
@@ -159,8 +161,8 @@ def solve_scattering_equations(n, dict_ss):
             Mnew.row_del(-1)
             Mnew = Mnew.tolist()
             if i == 1:
-                Mnew = [[zs_sub(ss_sub(str(entry))).replace("dict_zs['z{}']".format(n - 1),
-                                                            "dict_zs['z{}'] * mpmath.mpc(sol[str(zs[-2])] / zs[-3])".format(n - 2))
+                Mnew = [[_zs_sub(_ss_sub(str(entry))).replace("dict_zs['z{}']".format(n - 1),
+                                                              "dict_zs['z{}'] * mpmath.mpc(sol[str(zs[-2])] / zs[-3])".format(n - 2))
                          for entry in line] for line in Mnew]
                 for sol in sols:
                     A = [[value ** exponent for exponent in [1, 0]] for value in [-1, 1]]
@@ -173,7 +175,7 @@ def solve_scattering_equations(n, dict_ss):
                     sol[str(zs[-3])] = - coeffs[1] / coeffs[0]
                     sol[str(zs[-2])] = mpmath.mpc((sympy.simplify(sol[str(zs[-2])].subs({zs[-3]: sol[str(zs[-3])]}))))
             else:
-                Mnew = [[zs_sub(ss_sub(str(entry))) for entry in line] for line in Mnew]
+                Mnew = [[_zs_sub(_ss_sub(str(entry))) for entry in line] for line in Mnew]
 
                 for sol in sols:
                     A = [[value ** exponent for exponent in [1, 0]] for value in [-1, 1]]
@@ -192,9 +194,9 @@ def solve_scattering_equations(n, dict_ss):
 
 
 pattern_ss = re.compile(r"s_(\d*)")
-ss_sub = functools.partial(pattern_ss.sub, r"dict_ss['s_\1']")
+_ss_sub = functools.partial(pattern_ss.sub, r"dict_ss['s_\1']")
 pattern_zs = re.compile(r"z(\d*)")
-zs_sub = functools.partial(pattern_zs.sub, r"dict_zs['z\1']")
+_zs_sub = functools.partial(pattern_zs.sub, r"dict_zs['z\1']")
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

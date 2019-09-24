@@ -26,6 +26,18 @@ mpmath.mp.dps = 300
 
 
 class NumericalAmplitude(object):
+    """
+    | NumericalAmplitude provides a callable object to compute scattering amplitudes.
+    | To call provide a phase space point from the lips package.
+    .. code-block:: python
+        :linenos:
+
+        import seampy, lips
+        oParticles = lips.Particles(6)
+        oParticles.fix_mom_cons()
+        oAmp = NumericalAmplitude(theory="YM", helconf="pmpmpm")
+        oAmp(oParticles)  # returns a complex number
+    """
 
     def __init__(self, theory, helconf):
         self.theory = theory
@@ -43,52 +55,61 @@ class NumericalAmplitude(object):
         # A
         self.A = A(self.multiplicity)
         self.sA = self.A.tolist()
-        self.sA = [[ee_sub(ke_sub(ek_sub(kk_sub(zz_sub(str(entry)))))) for entry in line] for line in self.sA]
+        self.sA = [[_ee_sub(_ke_sub(_ek_sub(_kk_sub(_zz_sub(str(entry)))))) for entry in line] for line in self.sA]
+
         # Psi
         self.Psi = Psi(self.multiplicity)
         self.sPsi = self.Psi.tolist()
-        self.sPsi = [[ee_sub(ke_sub(ek_sub(kk_sub(zz_sub(str(entry)))))) for entry in line] for line in self.sPsi]
+        self.sPsi = [[_ee_sub(_ke_sub(_ek_sub(_kk_sub(_zz_sub(str(entry)))))) for entry in line] for line in self.sPsi]
+
         # Cyc
         self.Cyc = Cyc(self.multiplicity)
-        self.sCyc = zz_sub(str(self.Cyc))
+        self.sCyc = _zz_sub(str(self.Cyc))
+
         # Phi
         self.Phi = Phi(self.multiplicity)
         self.sPhi = self.Phi.tolist()
-        self.sPhi = [[(kk_sub(zz_sub(str(entry)))) for entry in line] for line in self.sPhi]
+        self.sPhi = [[(_kk_sub(_zz_sub(str(entry)))) for entry in line] for line in self.sPhi]
+
         # W1
         self.W1 = W1(self.multiplicity)
-        self.sW1 = ke_sub(ek_sub(zz_sub(str(self.W1))))
+        self.sW1 = _ke_sub(_ek_sub(_zz_sub(str(self.W1))))
 
-    def solve_SE(self, oParticles):
-        num_ss = map(oParticles.compute, map(str, self.ss))
-        dict_ss = {str(self.ss[i]): num_ss[i] for i in range(len(self.ss))}
+    def solve_se(self, oParticles):
+        """Interface to seampy.solver.solve_scattering_equations. Takes a phase space point as input."""
+        dict_ss = {str(s): oParticles.compute(str(s)) for s in self.ss}
         return solve_scattering_equations(self.multiplicity, dict_ss)
 
     def nPfPsi(self, sol, oParticles):
+        """Numerical pfaffian of reduced Psi."""
         nPsi = numpy.array([[eval(entry, None) for entry in line] for line in self.sPsi])
         Pf = pfaffian(nPsi)
         return Pf / 2
 
     def nPfA(self, sol, oParticles):
+        """Numerical pfaffian of reduced A."""
         nPfA = numpy.array([[eval(entry, None) for entry in line] for line in self.sA])
         Pf = pfaffian(nPfA)
         return Pf / 2
 
     def nCyc(self, sol):
+        """Numerical cyclic Parke-Taylor-like factor."""
         return mpmath.mpc(eval(self.sCyc, None))
 
     def nW1(self, sol, oParticles):
+        """Numerical W1 (integrand for DF2 and CG)."""
         return mpmath.mpc(eval(self.sW1, None))
 
     def detJ(self, sol, oParticles):
+        """Numerical determinant of reduced Jacobian matrix Phi."""
         return mpmath.det(mpmath.matrix([[eval(entry, None) for entry in line] for line in self.sPhi])) if self.sPhi != [] else 1
 
     def _evaluate(self, oParticles):
-        num_sols = self.solve_SE(oParticles)
+        num_sols = self.solve_se(oParticles)
         oParticles.helconf = self.helconf
         if self.theory == "YM":
             res = sum([self.nCyc(num_sol) * self.nPfPsi(num_sol, oParticles) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
-        elif self.theory == "GR":
+        elif self.theory == "EG":
             res = sum([(self.nPfPsi(num_sol, oParticles) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "BS":
             res = sum([(self.nCyc(num_sol) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
@@ -109,6 +130,7 @@ class NumericalAmplitude(object):
         return res
 
     def __call__(self, oParticles):
+        """__call__ documentation"""
         # look up in call cache
         if str(hash(oParticles)) in self.dCallCache:
             return self.dCallCache[str(str(hash(oParticles)))]
@@ -151,16 +173,16 @@ class NumericalAmplitude(object):
 ps_ij = re.compile("(s_\d*)")
 
 pattern_kk = re.compile(r"k(\d)\*k(\d)")
-kk_sub = functools.partial(pattern_kk.sub, r"oParticles.compute('s_\1\2') / 2")
+_kk_sub = functools.partial(pattern_kk.sub, r"oParticles.compute('s_\1\2') / 2")
 
 pattern_ek = re.compile(r"e(\d)\*k(\d)")
-ek_sub = functools.partial(pattern_ek.sub, r"oParticles.ep(\1, \2)")
+_ek_sub = functools.partial(pattern_ek.sub, r"oParticles.ep(\1, \2)")
 
 pattern_ke = re.compile(r"k(\d)\*e(\d)")
-ke_sub = functools.partial(pattern_ke.sub, r"oParticles.pe(\1, \2)")
+_ke_sub = functools.partial(pattern_ke.sub, r"oParticles.pe(\1, \2)")
 
 pattern_ee = re.compile(r"e(\d)\*e(\d)")
-ee_sub = functools.partial(pattern_ee.sub, r"oParticles.ee(\1, \2)")
+_ee_sub = functools.partial(pattern_ee.sub, r"oParticles.ee(\1, \2)")
 
 pattern_zz = re.compile(r"(z\d)")
-zz_sub = functools.partial(pattern_zz.sub, r"sol[str(sympy.symbols('\1'))]")
+_zz_sub = functools.partial(pattern_zz.sub, r"sol[str(sympy.symbols('\1'))]")

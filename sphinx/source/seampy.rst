@@ -10,7 +10,7 @@ seampy.amplitudes module
 .. automodule:: seampy.amplitudes
     :members:
     :undoc-members:
-    :show-inheritance:
+    :exclude-members: call_cache_path, get_call_cache, reload_call_cache, save_call_cache
 
 seampy.integrands module
 ------------------------
@@ -18,7 +18,6 @@ seampy.integrands module
 .. automodule:: seampy.integrands
     :members:
     :undoc-members:
-    :show-inheritance:
 
 seampy.solver module
 --------------------
@@ -26,16 +25,6 @@ seampy.solver module
 .. automodule:: seampy.solver
     :members:
     :undoc-members:
-    :show-inheritance:
-
-seampy.tools module
--------------------
-
-.. automodule:: seampy.tools
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 
 Module contents
 ---------------

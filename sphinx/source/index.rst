@@ -24,12 +24,12 @@ Installation is easy with pip::
 
 it also requires the phase space package lips::
 
-  pip install lips-lite
+  pip install lips
 
 alternatively the package can be cloned from github at https://github.com/GDeLaurentis/seampy.
 
 
-Quick Start
+Quick start
 =================
 
 To get started computing amplitudes open an interactive python session and follow this simple example::
