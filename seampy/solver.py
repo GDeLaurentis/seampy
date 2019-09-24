@@ -45,8 +45,8 @@ def hms(n):
     """Scattering equations in polynomial form."""
     ss = mandelstams(n)
     zs = punctures(n)
-    return [sum(ss[map(str, ss).index("s_{}".format("".join(map(str, (1,) + subset))))] * reduce(operator.mul, [zs[j - 1] for j in subset])
-                for subset in itertools.combinations(range(2, n), i)) for i in range(1, n + 1 - 3)]
+    return sympy.Matrix([sum(ss[map(str, ss).index("s_{}".format("".join(map(str, (1,) + subset))))] * reduce(operator.mul, [zs[j - 1] for j in subset])
+                             for subset in itertools.combinations(range(2, n), i)) for i in range(1, n + 1 - 3)])
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -62,7 +62,7 @@ def M(i, n=None):
     elif i == 3:
         return sympy.Matrix([])
     elif i == 4:
-        return sympy.Matrix(hms(n))
+        return hms(n)
     else:
         M_im1 = M(i - 1, n)
         M_im1_diff = sympy.diff(M_im1, zs[i - 3 - 1])
@@ -79,11 +79,14 @@ def M(i, n=None):
 
 def V(n):
     """Elimination theory vector of variables."""
-    zs = punctures(n)[1:n - 3]
-    elimination_vector = flatten(sympy.Matrix([1, zs[0]]))
-    for i in range(1, len(zs)):
-        elimination_vector = flatten(sympy.tensorproduct([zs[i] ** j for j in range(i + 2)], elimination_vector))
-    return elimination_vector
+    if n == 3:
+        return []
+    else:
+        zs = punctures(n)[1:n - 3]
+        elimination_vector = flatten(sympy.Matrix([1, zs[0]]))
+        for i in range(1, len(zs)):
+            elimination_vector = flatten(sympy.tensorproduct([zs[i] ** j for j in range(i + 2)], elimination_vector))
+        return elimination_vector
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

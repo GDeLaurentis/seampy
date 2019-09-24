@@ -5,6 +5,7 @@
 
 
 import shelve
+import numpy
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -45,3 +46,16 @@ class MyShelf(object):     # context manager shelf
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.obj.close()
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+
+def pfaffian(matrix):
+    rows, cols = matrix.shape
+    if rows == 0 and cols == 0:
+        return 1
+    else:
+        return sum((-1) ** i * matrix[0, i - 1] *
+                   pfaffian(matrix[numpy.ix_([j for j in range(cols) if j != 0 and j != i - 1],
+                                             [j for j in range(cols) if j != 0 and j != i - 1])]) for i in range(2, cols + 1))
