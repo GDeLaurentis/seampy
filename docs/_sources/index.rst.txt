@@ -3,17 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to seampy's documentation!
+seampy
 ==================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-seampy (Scattering Equations AMplitudes with PYthon)
+seampy (Scattering Equations AMplitudes with PYthon) is a Python package to solve the scattering equations and compute scattering amplitudes.
+The scattering equations are solved to high floating-point precision by means of elimination theory.
+The solutions are then used to build amplitudes in a variety of theories.
 
 
-Installing seampy
+Installation
 =================
 
 Installation is easy with pip::
@@ -24,10 +26,10 @@ it also requires the phase space package lips::
 
   pip install lips-lite
 
-alternatively the package can be cloned from github.
+alternatively the package can be cloned from github at https://github.com/GDeLaurentis/seampy.
 
 
-seampy QuickStart
+Quick Start
 =================
 
 To get started computing amplitudes open an interactive python session and follow this simple example::
@@ -44,17 +46,8 @@ To get started computing amplitudes open an interactive python session and follo
 
 	In [5]: oNumAmp(oParticles)
 
-the output will be a complex number	
+the output will be a complex number with 300 digits of precision by default.
 
-
-Then you should get::
-
-	Finished: An initial directory structure has been created.
-
-	You should now populate your master file .\source\index.rst and create other documentation
-	source files. Use the sphinx-build command to build the docs, like so:
-	   sphinx-build -b builder .\source .\build
-	where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
 Indices and tables
 ==================
