@@ -169,7 +169,7 @@ def W1(n):
         W1 = W1.subs(((zs[0] - zs[i], zs[0]), ))
         W1 = W1.subs(((-zs[0] + zs[i], - zs[0]), ))
         W1 = W1.subs(((zs[0] + zs[i], zs[0]), ))
-        # pull out a factor of z1 ** -2 ( oo ** -2 )
+    # pull out a factor of z1 ** -2 ( oo ** -2 )
     W1 = W1.subs(((1 / zs[0] ** 2, 1), ))
     # remaining two punctures
     W1 = W1.subs(((zs[1], 1), (zs[n - 1], 0)))

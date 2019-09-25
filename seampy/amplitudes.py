@@ -25,6 +25,10 @@ mpmath.mp.dps = 300
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 
+theories = ["YM", "EG", "BS", "BI", "NLSM", "Galileon", "CG", "DF2"]
+scalar_theories = ["BS", "BI", "NLSM", "Galileon"]
+
+
 class NumericalAmplitude(object):
     """
     | NumericalAmplitude provides a callable object to compute scattering amplitudes.
@@ -39,13 +43,25 @@ class NumericalAmplitude(object):
         oAmp(oParticles)  # returns a complex number
     """
 
-    def __init__(self, theory, helconf):
+    def __init__(self, theory, helconf=None, multiplicity=None):
+        if theory not in theories:
+            raise Exception("Theory not understood.")
         self.theory = theory
-        self.helconf = helconf.replace("+", "p").replace("-", "m")
-        self.__name__ = self.theory + "/" + self.helconf.replace("+", "p").replace("-", "m")
-        self.process_name = self.theory + "_" + self.helconf.replace("+", "p").replace("-", "m")
+        if theory in scalar_theories:
+            if helconf is not None:
+                raise Exception("Scalar theories don't need an helicity configuration.")
+            self.multiplicity = int(multiplicity)
+            self.__name__ = self.theory + "/" + str(self.multiplicity) + "pt"
+            self.process_name = self.theory + "_" + str(self.multiplicity) + "pt"
+        else:
+            if helconf is None:
+                raise Exception("Gauge and gravity theories require an helicity configuration.")
+            assert(multiplicity is None or multiplicity == len(helconf))
+            self.multiplicity = len(helconf)
+            self.helconf = helconf.replace("+", "p").replace("-", "m")
+            self.__name__ = self.theory + "/" + str(self.multiplicity) + "pt/" + self.helconf
+            self.process_name = self.theory + "_" + self.helconf
 
-        self.multiplicity = len(helconf)
         self.zs = sympy.symbols('z1:{}'.format(self.multiplicity + 1))
         self.ks = sympy.symbols('k1:{}'.format(self.multiplicity + 1))
         self.es = sympy.symbols('e1:{}'.format(self.multiplicity + 1))
@@ -106,28 +122,33 @@ class NumericalAmplitude(object):
 
     def _evaluate(self, oParticles):
         num_sols = self.solve_se(oParticles)
-        oParticles.helconf = self.helconf
+        if hasattr(self, "helconf"):
+            oParticles.helconf = self.helconf
         if self.theory == "YM":
+            nor = 1j / (mpmath.sqrt(2) ** (self.multiplicity - 2))
             res = sum([self.nCyc(num_sol) * self.nPfPsi(num_sol, oParticles) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "EG":
+            nor = 1j / 2 ** (self.multiplicity - 2)
             res = sum([(self.nPfPsi(num_sol, oParticles) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "BS":
+            nor = 1j
             res = sum([(self.nCyc(num_sol) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "BI":
+            nor = 1j
             res = sum([(self.nPfPsi(num_sol, oParticles) * self.nPfA(num_sol, oParticles) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "NLSM":
+            nor = 1j
             res = sum([(self.nCyc(num_sol) * self.nPfA(num_sol, oParticles) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "Galileon":
+            nor = 1j
             res = sum([(self.nPfA(num_sol, oParticles) ** 4) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "CG":
-            res = sum([mpmath.sqrt(2) ** self.multiplicity * (
-                self.nW1(num_sol, oParticles) * self.nPfPsi(num_sol, oParticles)) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
+            nor = 1j
+            res = sum([(self.nW1(num_sol, oParticles) * self.nPfPsi(num_sol, oParticles)) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "DF2":
+            nor = 1j
             res = sum([(self.nW1(num_sol, oParticles) * self.nCyc(num_sol)) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
-        else:
-            raise Exception("Theory not understood")
-        res = res / (1j * mpmath.sqrt(2) ** (self.multiplicity - 2))
-        return res
+        return nor * res
 
     def __call__(self, oParticles):
         """__call__ documentation"""
