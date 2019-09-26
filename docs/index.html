@@ -58,21 +58,36 @@ The solutions are then used to build amplitudes in a variety of theories.</p>
 </div>
 <div class="section" id="quick-start">
 <h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
-<p>To get started computing amplitudes open an interactive python session and follow this simple example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipython
+<p>To get started computing amplitudes open an (interactive) python session and follow this simple example:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   <span class="kn">import</span> <span class="nn">seampy</span><span class="o">,</span> <span class="nn">lips</span>
 
-In [1]: import seampy, lips
+   <span class="c1"># generate phase space point</span>
+   <span class="n">oParticles</span> <span class="o">=</span> <span class="n">lips</span><span class="o">.</span><span class="n">Particles</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+   <span class="n">oParticles</span><span class="o">.</span><span class="n">fix_mom_cons</span><span class="p">()</span>
 
-In [2]: oParticles = lips.Particles(6)
+   <span class="c1"># compute gauge or gravity amplitude: give helconf</span>
+   <span class="n">oYMAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;YM&quot;</span><span class="p">,</span> <span class="n">helconf</span><span class="o">=</span><span class="s2">&quot;pmpmpm&quot;</span><span class="p">)</span>
+   <span class="n">oYMAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
 
-In [3]: oParticles.fix_mom_cons()
-
-In [4]: oNumAmp = seampy.NumericalAmplitude(theory=&quot;DF2&quot;, helconf=&quot;pppmmm&quot;)
-
-In [5]: oNumAmp(oParticles)
+   <span class="c1"># compute scalar amplitude: give multiplicity of phase space</span>
+   <span class="n">oBSAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;BS&quot;</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+   <span class="n">oBSAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
 </pre></div>
-</div>
-<p>the output will be a complex number with 300 digits of precision by default.</p>
+</td></tr></table></div>
+</div></blockquote>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>

@@ -33,14 +33,24 @@ class NumericalAmplitude(object):
     """
     | NumericalAmplitude provides a callable object to compute scattering amplitudes.
     | To call provide a phase space point from the lips package.
+
     .. code-block:: python
         :linenos:
 
         import seampy, lips
+
+        # generate phase space point
         oParticles = lips.Particles(6)
         oParticles.fix_mom_cons()
-        oAmp = NumericalAmplitude(theory="YM", helconf="pmpmpm")
-        oAmp(oParticles)  # returns a complex number
+
+        # compute gauge or gravity amplitude: give helconf
+        oYMAmp = NumericalAmplitude(theory="YM", helconf="pmpmpm")
+        oYMAmp(oParticles)  # returns a complex number
+
+        # compute scalar amplitude: give multiplicity of phase space
+        oBSAmp = NumericalAmplitude(theory="BS", multiplicity=6)
+        oBSAmp(oParticles)  # returns a complex number
+
     """
 
     def __init__(self, theory, helconf=None, multiplicity=None):

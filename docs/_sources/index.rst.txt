@@ -32,21 +32,24 @@ alternatively the package can be cloned from github at https://github.com/GDeLau
 Quick start
 =================
 
-To get started computing amplitudes open an interactive python session and follow this simple example::
+To get started computing amplitudes open an (interactive) python session and follow this simple example:
 
-	$ ipython
+  .. code-block:: python
+		  :linenos:
+		   
+		     import seampy, lips
 
-	In [1]: import seampy, lips
+		     # generate phase space point
+		     oParticles = lips.Particles(6)
+		     oParticles.fix_mom_cons()
 
-	In [2]: oParticles = lips.Particles(6)
+		     # compute gauge or gravity amplitude: give helconf
+		     oYMAmp = NumericalAmplitude(theory="YM", helconf="pmpmpm")
+		     oYMAmp(oParticles)  # returns a complex number
 
-	In [3]: oParticles.fix_mom_cons()
-
-	In [4]: oNumAmp = seampy.NumericalAmplitude(theory="DF2", helconf="pppmmm")
-
-	In [5]: oNumAmp(oParticles)
-
-the output will be a complex number with 300 digits of precision by default.
+		     # compute scalar amplitude: give multiplicity of phase space
+		     oBSAmp = NumericalAmplitude(theory="BS", multiplicity=6)
+		     oBSAmp(oParticles)  # returns a complex number
 
 
 Indices and tables
