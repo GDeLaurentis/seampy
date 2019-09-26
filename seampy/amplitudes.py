@@ -26,7 +26,7 @@ mpmath.mp.dps = 300
 
 
 theories = ["YM", "EG", "BS", "BI", "NLSM", "Galileon", "CG", "DF2"]
-scalar_theories = ["BS", "BI", "NLSM", "Galileon"]
+scalar_theories = ["BS", "NLSM", "Galileon"]
 
 
 class NumericalAmplitude(object):
@@ -134,19 +134,19 @@ class NumericalAmplitude(object):
             nor = 1j
             res = sum([(self.nCyc(num_sol) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "BI":
-            nor = 1j
+            nor = 1j / mpmath.sqrt(2) ** (self.multiplicity - 6)
             res = sum([(self.nPfPsi(num_sol, oParticles) * self.nPfA(num_sol, oParticles) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "NLSM":
-            nor = 1j
+            nor = 1j * 4
             res = sum([(self.nCyc(num_sol) * self.nPfA(num_sol, oParticles) ** 2) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "Galileon":
-            nor = 1j
+            nor = 1j * 16
             res = sum([(self.nPfA(num_sol, oParticles) ** 4) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "CG":
-            nor = 1j
+            nor = 1j * 2
             res = sum([(self.nW1(num_sol, oParticles) * self.nPfPsi(num_sol, oParticles)) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         elif self.theory == "DF2":
-            nor = 1j
+            nor = 1j * mpmath.sqrt(2) ** self.multiplicity
             res = sum([(self.nW1(num_sol, oParticles) * self.nCyc(num_sol)) / self.detJ(num_sol, oParticles) for num_sol in num_sols])
         return nor * res
 
