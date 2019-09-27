@@ -143,15 +143,21 @@ def solve_scattering_equations(n, dict_ss):
                  for entry in line] for line in Mnew]
 
         # get scaling
-        dict_zs = {str(zs[-3]): 10 ** -100, str(zs[1]): 1}
-        nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
-        a = mpmath.det(nMn)
-        dict_zs = {str(zs[-3]): 10 ** -101, str(zs[1]): 1}
-        nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
-        b = mpmath.det(nMn)
-        scaling = - round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10))
-        assert(abs(round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) - mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) < 10 ** - 30)
-        assert(scaling == 0 if n == 5 else scaling == 2 if n == 6 else scaling == 17 if n == 7 else True)
+        if n == 5:
+            scaling = 0
+        elif n == 6:
+            scaling = 2
+        elif n == 7:
+            scaling = 17
+        else:  # computing from scratch, should work for any multiplicity in principle
+            dict_zs = {str(zs[-3]): 10 ** -100, str(zs[1]): 1}
+            nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
+            a = mpmath.det(nMn)
+            dict_zs = {str(zs[-3]): 10 ** -101, str(zs[1]): 1}
+            nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
+            b = mpmath.det(nMn)
+            scaling = - round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10))
+            assert(abs(round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) - mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) < 10 ** - 30)
 
         # solve the linear equations
         for i in range(1, n - 3):
