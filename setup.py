@@ -15,7 +15,7 @@ setup(
     author='Giuseppe De Laurentis',
     author_email='g.dl@hotmail.it',
     url='https://github.com/GDeLaurentis/seampy',
-    download_url='https://github.com/GDeLaurentis/seampy/archive/.tar.gz',
+    download_url='https://github.com/GDeLaurentis/seampy/archive/v1.0.0.tar.gz',
     keywords=['Scattering Equations', 'Numerical Amplitudes', 'Tree Level', 'CHY Formalism'],
     packages=find_packages(),
     install_requires=['numpy<1.17',
