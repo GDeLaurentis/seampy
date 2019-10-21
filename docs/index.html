@@ -71,12 +71,10 @@ The solutions are then used to build amplitudes in a variety of theories.</p>
  9
 10
 11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   <span class="kn">import</span> <span class="nn">seampy</span><span class="o">,</span> <span class="nn">lips</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span>   <span class="kn">import</span> <span class="nn">seampy</span><span class="o">,</span> <span class="nn">lips</span>
 
    <span class="c1"># generate phase space point</span>
    <span class="n">oParticles</span> <span class="o">=</span> <span class="n">lips</span><span class="o">.</span><span class="n">Particles</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-   <span class="n">oParticles</span><span class="o">.</span><span class="n">fix_mom_cons</span><span class="p">()</span>
 
    <span class="c1"># compute gauge or gravity amplitude: give helconf</span>
    <span class="n">oYMAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;YM&quot;</span><span class="p">,</span> <span class="n">helconf</span><span class="o">=</span><span class="s2">&quot;pmpmpm&quot;</span><span class="p">)</span>

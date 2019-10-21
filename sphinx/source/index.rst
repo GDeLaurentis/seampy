@@ -41,7 +41,6 @@ To get started computing amplitudes open an (interactive) python session and fol
 
 		     # generate phase space point
 		     oParticles = lips.Particles(6)
-		     oParticles.fix_mom_cons()
 
 		     # compute gauge or gravity amplitude: give helconf
 		     oYMAmp = NumericalAmplitude(theory="YM", helconf="pmpmpm")
