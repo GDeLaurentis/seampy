@@ -1,0 +1,10 @@
+*.pyc
+__pycache__
+.*
+*~
+!.hidden
+*.egg-info/
+dist/
+sphinx/build/
+BHbranchingStatistics
+htmlcov/

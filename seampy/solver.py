@@ -20,7 +20,7 @@ import mpmath
 import math
 import copy
 
-from tools import flatten
+from .tools import flatten
 
 mpmath.mp.dps = 300
 

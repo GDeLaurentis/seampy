@@ -14,9 +14,9 @@ import sympy
 import mpmath
 import functools
 
-from tools import MyShelf, pfaffian
-from solver import solve_scattering_equations, mandelstams
-from integrands import A, Psi, Cyc, Phi, W1
+from .tools import MyShelf, pfaffian
+from .solver import solve_scattering_equations, mandelstams
+from .integrands import A, Psi, Cyc, Phi, W1
 
 
 mpmath.mp.dps = 300
