@@ -7,15 +7,8 @@ import seampy
 from antares.core.bh_unknown import BHUnknown
 from antares.core.se_unknown import SEUnknown
 
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-
-def test_CG_not_color_ordered():
-    oParticles = lips.Particles(6)
-    oParticles.fix_mom_cons()
-    oNewParticles = oParticles.image("321456")
-    oCGAmp = seampy.NumericalAmplitude(theory="CG", helconf="pmpmpm")
-    assert(abs(oCGAmp(oParticles) - oCGAmp(oNewParticles)) < 10 ** -270)
 
 
 @pytest.mark.parametrize(

@@ -18,9 +18,9 @@ setup(
     download_url='https://github.com/GDeLaurentis/seampy/archive/v1.0.0.tar.gz',
     keywords=['Scattering Equations', 'Numerical Amplitudes', 'Tree Level', 'CHY Formalism'],
     packages=find_packages(),
-    install_requires=['numpy<1.17',
-                      'mpmath<=1.1.0',
-                      'sympy<=1.4',
+    install_requires=['numpy',
+                      'mpmath',
+                      'sympy',
                       'lips'],
     classifiers=[
         'Development Status :: 4 - Beta',

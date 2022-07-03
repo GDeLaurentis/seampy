@@ -45,7 +45,7 @@ def hms(n):
     """Scattering equations in polynomial form."""
     ss = mandelstams(n)
     zs = punctures(n)
-    return sympy.Matrix([sum(ss[map(str, ss).index("s_{}".format("".join(map(str, (1,) + subset))))] * reduce(operator.mul, [zs[j - 1] for j in subset])
+    return sympy.Matrix([sum(ss[list(map(str, ss)).index("s_{}".format("".join(map(str, (1,) + subset))))] * functools.reduce(operator.mul, [zs[j - 1] for j in subset])
                              for subset in itertools.combinations(range(2, n), i)) for i in range(1, n + 1 - 3)])
 
 
@@ -83,9 +83,9 @@ def V(n):
         return []
     else:
         zs = punctures(n)[1:n - 3]
-        elimination_vector = flatten(sympy.Matrix([1, zs[0]]))
+        elimination_vector = flatten(sympy.Matrix([1, zs[0]]).tolist())
         for i in range(1, len(zs)):
-            elimination_vector = flatten(sympy.tensorproduct([zs[i] ** j for j in range(i + 2)], elimination_vector))
+            elimination_vector = flatten(sympy.tensorproduct([zs[i] ** j for j in range(i + 2)], elimination_vector).tolist())
         return elimination_vector
 
 
@@ -105,7 +105,8 @@ def numerical_coeffs(Mn, n, dict_ss):
 
     for i, value in enumerate(values):
         dict_zs = {str(zs[-2]): value, str(zs[-3]): 1}  # noqa --- used in eval function
-        nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mn])
+        locs = locals()
+        nMn = mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in Mn])
         b += [mpmath.det(nMn)]
 
     return mpmath.lu_solve(A, b).T.tolist()[0]
@@ -151,10 +152,12 @@ def solve_scattering_equations(n, dict_ss):
             scaling = 17
         else:  # computing from scratch, should work for any multiplicity in principle
             dict_zs = {str(zs[-3]): 10 ** -100, str(zs[1]): 1}
-            nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
+            locs = locals()
+            nMn = mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in Mnew])
             a = mpmath.det(nMn)
             dict_zs = {str(zs[-3]): 10 ** -101, str(zs[1]): 1}
-            nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
+            locs = locals()
+            nMn = mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in Mnew])
             b = mpmath.det(nMn)
             scaling = - round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10))
             assert(abs(round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) - mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) < 10 ** - 30)
@@ -176,7 +179,8 @@ def solve_scattering_equations(n, dict_ss):
                     b = []
                     for value in [-1, 1]:
                         dict_zs = {str(zs[-3]): value, str(zs[1]): 1}
-                        nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
+                        locs = locals()
+                        nMn = mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in Mnew])
                         b += [mpmath.det(nMn) / (value ** scaling)]
                     coeffs = mpmath.lu_solve(A, b).T.tolist()[0]
                     sol[str(zs[-3])] = - coeffs[1] / coeffs[0]
@@ -189,7 +193,8 @@ def solve_scattering_equations(n, dict_ss):
                     b = []
                     for value in [-1, 1]:
                         dict_zs = {str(zs[i]): value, str(zs[-3]): sol[str(zs[-3])], str(zs[-2]): sol[str(zs[-2])]}  # noqa --- used in eval function
-                        nMn = mpmath.matrix([[eval(entry, None) for entry in line] for line in Mnew])
+                        locs = locals()
+                        nMn = mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in Mnew])
                         b += [mpmath.det(nMn)]
                     coeffs = mpmath.lu_solve(A, b).T.tolist()[0]
                     sol[str(zs[i])] = - coeffs[1] / coeffs[0]

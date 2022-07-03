@@ -108,27 +108,32 @@ class NumericalAmplitude(object):
 
     def nPfPsi(self, sol, oParticles):
         """Numerical pfaffian of reduced Psi."""
-        nPsi = numpy.array([[eval(entry, None) for entry in line] for line in self.sPsi])
+        locs = locals()
+        nPsi = numpy.array([[eval(entry, None, locs) for entry in line] for line in self.sPsi])
         Pf = pfaffian(nPsi)
         return Pf / 2
 
     def nPfA(self, sol, oParticles):
         """Numerical pfaffian of reduced A."""
-        nPfA = numpy.array([[eval(entry, None) for entry in line] for line in self.sA])
+        locs = locals()
+        nPfA = numpy.array([[eval(entry, None, locs) for entry in line] for line in self.sA])
         Pf = pfaffian(nPfA)
         return Pf / 2
 
     def nCyc(self, sol):
         """Numerical cyclic Parke-Taylor-like factor."""
-        return mpmath.mpc(eval(self.sCyc, None))
+        locs = locals()
+        return mpmath.mpc(eval(self.sCyc, None, locs))
 
     def nW1(self, sol, oParticles):
         """Numerical W1 (integrand for DF2 and CG)."""
-        return mpmath.mpc(eval(self.sW1, None))
+        locs = locals()
+        return mpmath.mpc(eval(self.sW1, None, locs))
 
     def detJ(self, sol, oParticles):
         """Numerical determinant of reduced Jacobian matrix Phi."""
-        return mpmath.det(mpmath.matrix([[eval(entry, None) for entry in line] for line in self.sPhi])) if self.sPhi != [] else 1
+        locs = locals()
+        return mpmath.det(mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in self.sPhi])) if self.sPhi != [] else 1
 
     def _evaluate(self, oParticles):
         num_sols = self.solve_se(oParticles)
@@ -201,7 +206,7 @@ class NumericalAmplitude(object):
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 
-ps_ij = re.compile("(s_\d*)")
+ps_ij = re.compile(r"(s_\d*)")
 
 pattern_kk = re.compile(r"k(\d)\*k(\d)")
 _kk_sub = functools.partial(pattern_kk.sub, r"oParticles.compute('s_\1\2') / 2")

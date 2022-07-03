@@ -10,6 +10,7 @@ from __future__ import print_function
 
 import sympy
 import operator
+import functools
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -103,7 +104,7 @@ def Cyc(n):
     """Parke-Taylor-like cyclic factor (reduced)."""
     zs = sympy.symbols('z1:{}'.format(n + 1))
 
-    Cyc = -1 / reduce(operator.mul, [(zs[i] - zs[i + 1]) for i in range(1, n - 1)])
+    Cyc = -1 / functools.reduce(operator.mul, [(zs[i] - zs[i + 1]) for i in range(1, n - 1)])
     # Mobius fix
     Cyc = Cyc.subs(((zs[0], sympy.oo), (zs[1], 1), (zs[n - 1], 0)))
     # simplify
@@ -161,7 +162,7 @@ def W1(n):
         r = i + 1 if i != n - 1 else 0
         return - sum([es[i] * ks[j] * (zs[j] - zs[r]) / ((zs[r] - zs[i]) * (zs[i] - zs[j])) for j in range(n) if j != i])
 
-    W1 = reduce(operator.mul, [omega(i) for i in range(n)])
+    W1 = functools.reduce(operator.mul, [omega(i) for i in range(n)])
 
     # Mobius fix:
     # simplify infinities
