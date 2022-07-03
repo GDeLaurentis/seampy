@@ -4,9 +4,6 @@ import pytest
 import lips
 import seampy
 
-from antares.core.bh_unknown import BHUnknown
-from antares.core.se_unknown import SEUnknown
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -55,7 +52,7 @@ def test_YM_with_analytics(helconf, analytic_expr):
     ("helconf", ), [("ppmm", ), ("pmpm", )]
 )
 def test_YM_BS_EG_double_copy(helconf):
-    oParticles = lips.Particles(len(helconf), seed=0)
+    oParticles = lips.Particles(len(helconf))
     BSAmp = seampy.NumericalAmplitude(theory="BS", multiplicity=len(helconf))
     YMAmp = seampy.NumericalAmplitude(theory="YM", helconf=helconf)
     EGAmp = seampy.NumericalAmplitude(theory="EG", helconf=helconf)
