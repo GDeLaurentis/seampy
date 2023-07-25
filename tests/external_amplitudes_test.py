@@ -19,8 +19,8 @@ def test_YM_with_BlackHat(helconf):
     oParticles.fix_mom_cons(real_momenta=False)
     oBHUnknown = BHUnknown(helconf=helconf, amppart="tree")
     oCHYUnknown = seampy.NumericalAmplitude(theory="YM", helconf=helconf)
-    assert(numpy.isclose(complex(oBHUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
-           numpy.isclose(complex(oBHUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
+    assert (numpy.isclose(complex(oBHUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
+            numpy.isclose(complex(oBHUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
 
 
 @pytest.mark.parametrize(
@@ -37,8 +37,8 @@ def test_YM_with_JoeSEsolver(helconf, se_arg):
     oParticles.fix_mom_cons(real_momenta=False)
     oSEUnknown = SEUnknown(se_arg)
     oCHYUnknown = seampy.NumericalAmplitude(theory="YM", helconf=helconf)
-    assert(numpy.isclose(1j * complex(oSEUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
-           numpy.isclose(1j * complex(oSEUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
+    assert (numpy.isclose(1j * complex(oSEUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
+            numpy.isclose(1j * complex(oSEUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
 
 
 @pytest.mark.parametrize(
@@ -53,8 +53,8 @@ def test_EG_with_JoeSEsolver(helconf, se_arg):
     oParticles.fix_mom_cons(real_momenta=False)
     oSEUnknown = SEUnknown(se_arg)
     oCHYUnknown = seampy.NumericalAmplitude(theory="EG", helconf=helconf)
-    assert(numpy.isclose(1j * complex(oSEUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
-           numpy.isclose(1j * complex(oSEUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
+    assert (numpy.isclose(1j * complex(oSEUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
+            numpy.isclose(1j * complex(oSEUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
 
 
 @pytest.mark.parametrize(
@@ -69,5 +69,5 @@ def test_CG_with_JoeSEsolver(helconf, se_arg):
     oParticles.fix_mom_cons(real_momenta=False)
     oSEUnknown = SEUnknown(se_arg)
     oCHYUnknown = seampy.NumericalAmplitude(theory="CG", helconf=helconf)
-    assert(numpy.isclose(1j * complex(oSEUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
-           numpy.isclose(1j * complex(oSEUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))
+    assert (numpy.isclose(1j * complex(oSEUnknown(oParticles)), complex(oCHYUnknown(oParticles))) or
+            numpy.isclose(1j * complex(oSEUnknown(oParticles)), -complex(oCHYUnknown(oParticles))))

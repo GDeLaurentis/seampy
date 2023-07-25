@@ -66,7 +66,7 @@ class NumericalAmplitude(object):
         else:
             if helconf is None:
                 raise Exception("Gauge and gravity theories require an helicity configuration.")
-            assert(multiplicity is None or multiplicity == len(helconf))
+            assert multiplicity is None or multiplicity == len(helconf)
             self.multiplicity = len(helconf)
             self.helconf = helconf.replace("+", "p").replace("-", "m")
             self.__name__ = self.theory + "/" + str(self.multiplicity) + "pt/" + self.helconf

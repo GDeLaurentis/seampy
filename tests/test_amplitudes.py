@@ -12,7 +12,7 @@ def test_CG_not_color_ordered():
     oParticles = lips.Particles(6)
     oNewParticles = oParticles.image("321456")
     oCGAmp = seampy.NumericalAmplitude(theory="CG", helconf="pmpmpm")
-    assert(abs(oCGAmp(oParticles) - oCGAmp(oNewParticles)) < 10 ** -270)
+    assert abs(oCGAmp(oParticles) - oCGAmp(oNewParticles)) < 10 ** -270
 
 
 @pytest.mark.parametrize(
@@ -44,8 +44,8 @@ def test_CG_not_color_ordered():
 def test_YM_with_analytics(helconf, analytic_expr):
     oParticles = lips.Particles(len(helconf))
     YMTreeAmp = seampy.NumericalAmplitude(theory="YM", helconf=helconf)
-    assert(numpy.isclose(complex(YMTreeAmp(oParticles)), 1j * complex(oParticles(analytic_expr))) or
-           numpy.isclose(complex(YMTreeAmp(oParticles)), -1j * complex(oParticles(analytic_expr))))
+    assert (numpy.isclose(complex(YMTreeAmp(oParticles)), 1j * complex(oParticles(analytic_expr))) or
+            numpy.isclose(complex(YMTreeAmp(oParticles)), -1j * complex(oParticles(analytic_expr))))
 
 
 @pytest.mark.parametrize(

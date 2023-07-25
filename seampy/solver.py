@@ -160,7 +160,7 @@ def solve_scattering_equations(n, dict_ss):
             nMn = mpmath.matrix([[eval(entry, None, locs) for entry in line] for line in Mnew])
             b = mpmath.det(nMn)
             scaling = - round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10))
-            assert(abs(round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) - mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) < 10 ** - 30)
+            assert abs(round(mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) - mpmath.log(abs(b) / abs(a)) / mpmath.log(10)) < 10 ** - 30
 
         # solve the linear equations
         for i in range(1, n - 3):
