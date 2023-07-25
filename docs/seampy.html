@@ -1,19 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>seampy package &#8212; seampy v1.0.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -27,7 +28,8 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">seampy v1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">seampy v1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">seampy package</a></li> 
       </ul>
     </div>  
 
@@ -37,79 +39,67 @@
           <div class="body" role="main">
             
   <div class="section" id="seampy-package">
-<h1>seampy package<a class="headerlink" href="#seampy-package" title="Permalink to this headline">¶</a></h1>
+<h1>seampy package<a class="headerlink" href="#seampy-package" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </div>
 <div class="section" id="module-seampy.amplitudes">
-<span id="seampy-amplitudes-module"></span><h2>seampy.amplitudes module<a class="headerlink" href="#module-seampy.amplitudes" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="seampy.amplitudes.NumericalAmplitude">
-<em class="property">class </em><code class="descclassname">seampy.amplitudes.</code><code class="descname">NumericalAmplitude</code><span class="sig-paren">(</span><em>theory</em>, <em>helconf=None</em>, <em>multiplicity=None</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude" title="Permalink to this definition">¶</a></dt>
+<span id="seampy-amplitudes-module"></span><h2>seampy.amplitudes module<a class="headerlink" href="#module-seampy.amplitudes" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">seampy.amplitudes.</span></span><span class="sig-name descname"><span class="pre">NumericalAmplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">helconf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiplicity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
 <div class="line">NumericalAmplitude provides a callable object to compute scattering amplitudes.</div>
 <div class="line">To call provide a phase space point from the lips package.</div>
 </div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seampy</span><span class="o">,</span> <span class="nn">lips</span>
-
-<span class="c1"># generate phase space point</span>
-<span class="n">oParticles</span> <span class="o">=</span> <span class="n">lips</span><span class="o">.</span><span class="n">Particles</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">oParticles</span><span class="o">.</span><span class="n">fix_mom_cons</span><span class="p">()</span>
-
-<span class="c1"># compute gauge or gravity amplitude: give helconf</span>
-<span class="n">oYMAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;YM&quot;</span><span class="p">,</span> <span class="n">helconf</span><span class="o">=</span><span class="s2">&quot;pmpmpm&quot;</span><span class="p">)</span>
-<span class="n">oYMAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
-
-<span class="c1"># compute scalar amplitude: give multiplicity of phase space</span>
-<span class="n">oBSAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;BS&quot;</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">oBSAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">seampy</span><span class="o">,</span> <span class="nn">lips</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># generate phase space point</span>
+<span class="linenos"> 4</span><span class="n">oParticles</span> <span class="o">=</span> <span class="n">lips</span><span class="o">.</span><span class="n">Particles</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="n">oParticles</span><span class="o">.</span><span class="n">fix_mom_cons</span><span class="p">()</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># compute gauge or gravity amplitude: give helconf</span>
+<span class="linenos"> 8</span><span class="n">oYMAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;YM&quot;</span><span class="p">,</span> <span class="n">helconf</span><span class="o">=</span><span class="s2">&quot;pmpmpm&quot;</span><span class="p">)</span>
+<span class="linenos"> 9</span><span class="n">oYMAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># compute scalar amplitude: give multiplicity of phase space</span>
+<span class="linenos">12</span><span class="n">oBSAmp</span> <span class="o">=</span> <span class="n">NumericalAmplitude</span><span class="p">(</span><span class="n">theory</span><span class="o">=</span><span class="s2">&quot;BS&quot;</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos">13</span><span class="n">oBSAmp</span><span class="p">(</span><span class="n">oParticles</span><span class="p">)</span>  <span class="c1"># returns a complex number</span>
 </pre></div>
-</td></tr></table></div>
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.detJ">
-<code class="descname">detJ</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.detJ" title="Permalink to this definition">¶</a></dt>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude.detJ">
+<span class="sig-name descname"><span class="pre">detJ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oParticles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.detJ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical determinant of reduced Jacobian matrix Phi.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.nCyc">
-<code class="descname">nCyc</code><span class="sig-paren">(</span><em>sol</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nCyc" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude.nCyc">
+<span class="sig-name descname"><span class="pre">nCyc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nCyc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical cyclic Parke-Taylor-like factor.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.nPfA">
-<code class="descname">nPfA</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nPfA" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude.nPfA">
+<span class="sig-name descname"><span class="pre">nPfA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oParticles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nPfA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical pfaffian of reduced A.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.nPfPsi">
-<code class="descname">nPfPsi</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nPfPsi" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude.nPfPsi">
+<span class="sig-name descname"><span class="pre">nPfPsi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oParticles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nPfPsi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical pfaffian of reduced Psi.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.nW1">
-<code class="descname">nW1</code><span class="sig-paren">(</span><em>sol</em>, <em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nW1" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude.nW1">
+<span class="sig-name descname"><span class="pre">nW1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oParticles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.nW1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical W1 (integrand for DF2 and CG).</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="seampy.amplitudes.NumericalAmplitude.solve_se">
-<code class="descname">solve_se</code><span class="sig-paren">(</span><em>oParticles</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.solve_se" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="seampy.amplitudes.NumericalAmplitude.solve_se">
+<span class="sig-name descname"><span class="pre">solve_se</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oParticles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.amplitudes.NumericalAmplitude.solve_se" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interface to seampy.solver.solve_scattering_equations. Takes a phase space point as input.</p>
 </dd></dl>
 
@@ -117,107 +107,137 @@
 
 </div>
 <div class="section" id="module-seampy.integrands">
-<span id="seampy-integrands-module"></span><h2>seampy.integrands module<a class="headerlink" href="#module-seampy.integrands" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="seampy.integrands.A">
-<code class="descclassname">seampy.integrands.</code><code class="descname">A</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.A" title="Permalink to this definition">¶</a></dt>
+<span id="seampy-integrands-module"></span><h2>seampy.integrands module<a class="headerlink" href="#module-seampy.integrands" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.integrands.A">
+<span class="sig-prename descclassname"><span class="pre">seampy.integrands.</span></span><span class="sig-name descname"><span class="pre">A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.A" title="Permalink to this definition">¶</a></dt>
 <dd><p>A anti-symmetric matrix (reduced).</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.integrands.Cyc">
-<code class="descclassname">seampy.integrands.</code><code class="descname">Cyc</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Cyc" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.integrands.Cyc">
+<span class="sig-prename descclassname"><span class="pre">seampy.integrands.</span></span><span class="sig-name descname"><span class="pre">Cyc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Cyc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parke-Taylor-like cyclic factor (reduced).</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.integrands.Phi">
-<code class="descclassname">seampy.integrands.</code><code class="descname">Phi</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Phi" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.integrands.Phi">
+<span class="sig-prename descclassname"><span class="pre">seampy.integrands.</span></span><span class="sig-name descname"><span class="pre">Phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Phi" title="Permalink to this definition">¶</a></dt>
 <dd><p>SE Jacobian matrix (reduced).</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.integrands.Psi">
-<code class="descclassname">seampy.integrands.</code><code class="descname">Psi</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Psi" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.integrands.Psi">
+<span class="sig-prename descclassname"><span class="pre">seampy.integrands.</span></span><span class="sig-name descname"><span class="pre">Psi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.Psi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Psi anti-symmetric matrix (reduced).</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.integrands.W1">
-<code class="descclassname">seampy.integrands.</code><code class="descname">W1</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.W1" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.integrands.W1">
+<span class="sig-prename descclassname"><span class="pre">seampy.integrands.</span></span><span class="sig-name descname"><span class="pre">W1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.integrands.W1" title="Permalink to this definition">¶</a></dt>
 <dd><p>DF2 and CG integrand (reduced).</p>
 </dd></dl>
 
 </div>
 <div class="section" id="module-seampy.solver">
-<span id="seampy-solver-module"></span><h2>seampy.solver module<a class="headerlink" href="#module-seampy.solver" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="seampy.solver.M">
-<code class="descclassname">seampy.solver.</code><code class="descname">M</code><span class="sig-paren">(</span><em>i</em>, <em>n=None</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.M" title="Permalink to this definition">¶</a></dt>
+<span id="seampy-solver-module"></span><h2>seampy.solver module<a class="headerlink" href="#module-seampy.solver" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.M">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">M</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.M" title="Permalink to this definition">¶</a></dt>
 <dd><p>Elimination theory matrix: i^th matrix in the recursion with n external legs. Default is i = n.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.solver.V">
-<code class="descclassname">seampy.solver.</code><code class="descname">V</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.V" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.V">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">V</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.V" title="Permalink to this definition">¶</a></dt>
 <dd><p>Elimination theory vector of variables.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.solver.hms">
-<code class="descclassname">seampy.solver.</code><code class="descname">hms</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.hms" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.hms">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">hms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.hms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scattering equations in polynomial form.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.solver.mandelstams">
-<code class="descclassname">seampy.solver.</code><code class="descname">mandelstams</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.mandelstams" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.mandelstams">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">mandelstams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.mandelstams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mandelstam variables appearing in the polynomial scattering equations.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.solver.numerical_coeffs">
-<code class="descclassname">seampy.solver.</code><code class="descname">numerical_coeffs</code><span class="sig-paren">(</span><em>Mn</em>, <em>n</em>, <em>dict_ss</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.numerical_coeffs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.numerical_coeffs">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">numerical_coeffs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_ss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.numerical_coeffs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numerical coefficients of polynomial of order (n - 3)! obtianed from determinant of elimination theory matrix.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.solver.punctures">
-<code class="descclassname">seampy.solver.</code><code class="descname">punctures</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.punctures" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.punctures">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">punctures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.punctures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Punctures of the Riemann sphere.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="seampy.solver.solve_scattering_equations">
-<code class="descclassname">seampy.solver.</code><code class="descname">solve_scattering_equations</code><span class="sig-paren">(</span><em>n</em>, <em>dict_ss</em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.solve_scattering_equations" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="seampy.solver.solve_scattering_equations">
+<span class="sig-prename descclassname"><span class="pre">seampy.solver.</span></span><span class="sig-name descname"><span class="pre">solve_scattering_equations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_ss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#seampy.solver.solve_scattering_equations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solves the scattering equations given multiplicity and mandelstams.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="module-seampy">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-seampy" title="Permalink to this headline">¶</a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-seampy" title="Permalink to this heading">¶</a></h2>
 <p>Content as above.</p>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">seampy package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-seampy.amplitudes">seampy.amplitudes module</a></li>
-<li><a class="reference internal" href="#module-seampy.integrands">seampy.integrands module</a></li>
-<li><a class="reference internal" href="#module-seampy.solver">seampy.solver module</a></li>
+<li><a class="reference internal" href="#module-seampy.amplitudes">seampy.amplitudes module</a><ul>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude</span></code></a><ul>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude.detJ"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude.detJ()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude.nCyc"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude.nCyc()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude.nPfA"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude.nPfA()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude.nPfPsi"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude.nPfPsi()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude.nW1"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude.nW1()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.amplitudes.NumericalAmplitude.solve_se"><code class="docutils literal notranslate"><span class="pre">NumericalAmplitude.solve_se()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-seampy.integrands">seampy.integrands module</a><ul>
+<li><a class="reference internal" href="#seampy.integrands.A"><code class="docutils literal notranslate"><span class="pre">A()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.integrands.Cyc"><code class="docutils literal notranslate"><span class="pre">Cyc()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.integrands.Phi"><code class="docutils literal notranslate"><span class="pre">Phi()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.integrands.Psi"><code class="docutils literal notranslate"><span class="pre">Psi()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.integrands.W1"><code class="docutils literal notranslate"><span class="pre">W1()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-seampy.solver">seampy.solver module</a><ul>
+<li><a class="reference internal" href="#seampy.solver.M"><code class="docutils literal notranslate"><span class="pre">M()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.solver.V"><code class="docutils literal notranslate"><span class="pre">V()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.solver.hms"><code class="docutils literal notranslate"><span class="pre">hms()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.solver.mandelstams"><code class="docutils literal notranslate"><span class="pre">mandelstams()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.solver.numerical_coeffs"><code class="docutils literal notranslate"><span class="pre">numerical_coeffs()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.solver.punctures"><code class="docutils literal notranslate"><span class="pre">punctures()</span></code></a></li>
+<li><a class="reference internal" href="#seampy.solver.solve_scattering_equations"><code class="docutils literal notranslate"><span class="pre">solve_scattering_equations()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-seampy">Module contents</a></li>
 </ul>
 </li>
 </ul>
 
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -226,17 +246,15 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -250,12 +268,13 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">seampy v1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">seampy v1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">seampy package</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Giuseppe De Laurentis.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>
